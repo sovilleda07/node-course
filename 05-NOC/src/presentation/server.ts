@@ -12,7 +12,7 @@ export class Server {
     console.log('Server started...');
 
     CronService.createJob('*/5 * * * * *', () => {
-      const url = 'https://localhost:3000';
+      const url = 'http://google.com';
 
       new CheckService(
         fileSystemLogRepository,
