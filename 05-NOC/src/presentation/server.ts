@@ -12,16 +12,18 @@ export class Server {
   public static start() {
     console.log('Server started...');
 
-    const emailService = new EmailService();
-    emailService.sendEmail({
-      to: 'email@gmail.com',
-      subject: 'Logs de sistema',
-      htmlBody: `
-      <h3>Logs de sistema - NOC</h3>
-      <p>Lorem ipsum</p>
-      <p>Ver logs adjuntos</p>
-      `,
-    });
+    // const emailService = new EmailService();
+
+    // emailService.sendEmail({
+    //   to: 'email@gmail.com',
+    //   subject: 'Logs de sistema',
+    //   htmlBody: `
+    //   <h3>Logs de sistema - NOC</h3>
+    //   <p>Lorem ipsum</p>
+    //   <p>Ver logs adjuntos</p>
+    //   `,
+    // });
+    // emailService.sendEmailWithFileSystemLogs('email@gmail.com');
 
     CronService.createJob('*/5 * * * * *', () => {
       const url = 'http://google.com';
