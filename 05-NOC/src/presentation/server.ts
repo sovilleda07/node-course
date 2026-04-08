@@ -12,8 +12,8 @@ export class Server {
   public static start() {
     console.log('Server started...');
 
-    // const emailService = new EmailService();
-
+    //todo: Enviar email
+    // const emailService = new EmailService(fileSystemLogRepository);
     // emailService.sendEmail({
     //   to: 'email@gmail.com',
     //   subject: 'Logs de sistema',
