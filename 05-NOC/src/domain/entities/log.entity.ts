@@ -29,14 +29,14 @@ export class LogEntity {
   // Factory Constructor
   static fromJson = (json: string): LogEntity => {
     json = json === '' ? '{}' : json;
-    
+
     const { message, level, createdAt, origin } = JSON.parse(json);
 
     // if(!message) throw new Error('Message is required');
     const log = new LogEntity({
       message,
       level,
-      createdAt,
+      createdAt: new Date(createdAt),
       origin,
     });
 
