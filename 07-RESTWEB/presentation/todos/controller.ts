@@ -60,9 +60,6 @@ export class TodosController {
       ? (todo.completedAt = null)
       : (todo.completedAt = new Date(completedAt || todo.completedAt));
 
-    todo.text = text;
-    //! OJO, referencia
-
     res.json(todo);
   };
 
