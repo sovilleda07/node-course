@@ -2,12 +2,12 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    "rootDir": "src",
+    "rootDir": ".",
     "outDir": "dist/",
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "preserve",
+    "module": "nodenext",
     "target": "esnext",
     // "types": [],
     // For nodejs:
@@ -42,7 +42,11 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "nodenext",
     "resolveJsonModule": true
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "presentation/**/*.ts"
+  ]
 }
