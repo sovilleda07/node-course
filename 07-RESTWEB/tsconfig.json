@@ -2,7 +2,7 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    "rootDir": ".",
+    "rootDir": "src",
     "outDir": "dist/",
 
     // Environment Settings
@@ -46,7 +46,6 @@
     "resolveJsonModule": true
   },
   "include": [
-    "src/**/*.ts",
-    "presentation/**/*.ts"
+    "src/**/*.ts"
   ]
 }

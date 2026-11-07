@@ -82,6 +82,7 @@ npx prisma migration status    # Show migration status
 npx prisma migration plan --name nombre_de_tu_cambio
 npx prisma db migrate --advance-ref db
 ```
+-- https://www.prisma.io/docs/prisma-orm/quickstart/existing-app/postgresql
 
 ### Files
 
