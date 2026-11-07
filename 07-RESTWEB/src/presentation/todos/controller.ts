@@ -41,22 +41,17 @@ export class TodosController {
       return res.status(400).json({ error: 'ID argument is not a number' });
 
     const todo = await prisma.orm.public.todo.where({ id }).first();
+
     if (!todo)
       return res.status(404).json({ error: `Todo with id ${id} not found` });
 
     const { text, completedAt } = req.body;
 
-    if (completedAt === null)
-      return res.status(400).json({ error: 'completedAt cannot be null' });
-
-    await prisma.orm.public.todo.where({ id }).update({
+    const updatedTodo = await prisma.orm.public.todo.where({ id }).update({
       text: text || todo.text,
-      completedAt: completedAt
-        ? new Date(completedAt)
-        : todo.completedAt,
+      completedAt: completedAt ? new Date(completedAt) : todo.completedAt,
     });
 
-    const updatedTodo = await prisma.orm.public.todo.where({ id }).first();
     return res.json(updatedTodo);
   };
 
@@ -69,7 +64,10 @@ export class TodosController {
     if (!todo)
       return res.status(404).json({ error: `Todo with id ${id} not found` });
 
-    await prisma.orm.public.todo.where({ id }).delete();
-    return res.json(todo);
+    const deleted = await prisma.orm.public.todo.where({ id }).delete();
+
+    deleted
+      ? res.json(deleted)
+      : res.status(400).json({ error: `Todo with id ${id} not found` });
   };
 }
