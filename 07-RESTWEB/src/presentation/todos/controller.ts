@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { prisma } from '../../data/postgres';
-import { CreateTodoDTO } from '../../domain/dtos';
+import { CreateTodoDTO, UpdateTodoDTO } from '../../domain/dtos';
 
 export class TodosController {
   //* Dependency Injection
@@ -36,20 +36,18 @@ export class TodosController {
   };
 
   public updateTodo = async (req: Request, res: Response) => {
-    const id = +req.params.id!;
-    if (isNaN(id))
-      return res.status(400).json({ error: 'ID argument is not a number' });
+    const id = Number(req.params.id);
+
+    const [error, updateTodoDto] = UpdateTodoDTO.create({ ...req.body, id });
+    if (error !== undefined) return res.status(400).json({ error });
 
     const todo = await prisma.orm.public.todo.where({ id }).first();
 
     if (!todo)
       return res.status(404).json({ error: `Todo with id ${id} not found` });
 
-    const { text, completedAt } = req.body;
-
     const updatedTodo = await prisma.orm.public.todo.where({ id }).update({
-      text: text || todo.text,
-      completedAt: completedAt ? new Date(completedAt) : todo.completedAt,
+      ...updateTodoDto.values,
     });
 
     return res.json(updatedTodo);
