@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { prisma } from '../../data/postgres';
+import { CreateTodoDTO } from '../../domain/dtos';
 
 export class TodosController {
   //* Dependency Injection
@@ -23,13 +24,12 @@ export class TodosController {
   };
 
   public createTodo = async (req: Request, res: Response) => {
-    const { text } = req.body;
-    if (!text)
-      return res.status(400).json({ error: 'Text property is required' });
+    const [error, createTodoDto] = CreateTodoDTO.create(req.body);
+
+    if (error !== undefined) return res.status(400).json({ error });
 
     const todo = await prisma.orm.public.todo.create({
-      text,
-      completedAt: new Date(),
+      ...createTodoDto,
     });
 
     return res.status(201).json(todo);

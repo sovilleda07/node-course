@@ -211,7 +211,7 @@
           "todo": {
             "fields": {
               "completedAt": {
-                "nullable": false,
+                "nullable": true,
                 "type": {
                   "codecId": "pg/timestamp-date@1",
                   "kind": "scalar"
@@ -413,7 +413,7 @@
                 "completedAt": {
                   "codecId": "pg/timestamp-date@1",
                   "dataType": "pg/timestamp",
-                  "nullable": false
+                  "nullable": true
                 },
                 "id": {
                   "codecId": "pg/int4@1",
@@ -448,7 +448,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "2e28d88c943b0ba1d5a3833c7416dfa712a675fff1df6ff18d5e8a210ef424db"
+    "storageHash": "065207e9d26e42f7d14a9cb12f3917c263b999a6c1d594705a7036f7ef6f6e2f"
   },
   "execution": {
     "executionHash": "0ff7f5c55037616d53a67c7c581c1178658b41c7a674a85dd59fc3b8f9dd8a49",
